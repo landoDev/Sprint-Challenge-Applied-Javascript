@@ -44,27 +44,38 @@ function Article (dataObj) {
 }
 // console.log(Article())
 const articleEntry = document.querySelector('.cards-container')
-// const javaScript = []
-// All object articles from response will go in the below array?
-const dataObjArray = []
+// ===== Below is refactored code using .values and a nested forEach ===== //
 axios.get('https://lambda-times-backend.herokuapp.com/articles')
   .then (response => {
-    console.log(response.data.articles)
-    response.data.articles.javascript.forEach(article => {
-        articleEntry.prepend(Article(article))
+    // console.log(response.data.articles)
+    const articleObj = response.data.articles;
+    const articleArray = Object.values(articleObj);
+    console.log(articleArray);
+    // loop through keys of articles
+    articleArray.forEach(articleData => {
+        articleData.forEach(article => {
+            articleEntry.append(Article(article))
+        })
+        
     })
-    response.data.articles.bootstrap.forEach(article => {
-        articleEntry.append(Article(article))
-    })
-    response.data.articles.technology.forEach(article => {
-        articleEntry.append(Article(article))
-    })
-    response.data.articles.jquery.forEach(article => {
-        articleEntry.append(Article(article))
-    })
-    response.data.articles.node.forEach(article => {
-        articleEntry.append(Article(article))
-    })
+    // For each key get list of articles iterate through array of object
+
+    // ====== The below code will not break ===== //
+    // response.data.articles.javascript.forEach(article => {
+    //     articleEntry.prepend(Article(article))
+    // })
+    // response.data.articles.bootstrap.forEach(article => {
+    //     articleEntry.append(Article(article))
+    // })
+    // response.data.articles.technology.forEach(article => {
+    //     articleEntry.append(Article(article))
+    // })
+    // response.data.articles.jquery.forEach(article => {
+    //     articleEntry.append(Article(article))
+    // })
+    // response.data.articles.node.forEach(article => {
+    //     articleEntry.append(Article(article))
+    // })
     // javaScript.push(response.data.articles.javascript);
 })
 // console.log(javaScript)
