@@ -50,7 +50,7 @@ axios.get('https://lambda-times-backend.herokuapp.com/articles')
     // console.log(response.data.articles)
     const articleObj = response.data.articles;
     const articleArray = Object.values(articleObj);
-    console.log(articleArray);
+    // console.log(articleArray);
     // loop through keys of articles
     articleArray.forEach(articleData => {
         articleData.forEach(article => {
