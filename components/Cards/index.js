@@ -17,30 +17,40 @@
 // </div>
 //
 // Create a card for each of the articles and add the card to the DOM.
-function Article () {
+function Article (dataObj) {
     const articleCard = document.createElement('div'),
           headLine = document.createElement('div'),
           authorContainer = document.createElement('div'),
           imgContainer = document.createElement('div'),
           authImg = document.createElement('img'),
-          authorName = document.createElement('span');
+          articleBy = document.createElement('span');
     
     articleCard.appendChild(headLine);
     articleCard.appendChild(authorContainer);
     authorContainer.appendChild(imgContainer);
-    authorContainer.appendChild(authorName);
+    authorContainer.appendChild(articleBy);
     imgContainer.appendChild(authImg);
     
     articleCard.classList.add('card');
     headLine.classList.add('headline');
     authorContainer.classList.add('author');
     imgContainer.classList.add('img-container');
+
+    headLine.textContent = dataObj.headline;
+    authImg.src = dataObj.authorPhoto;
+    articleBy.textContent = dataObj.authorName;
     
     return articleCard;
 }
 // console.log(Article())
-
+const articleEntry = document.querySelector('.cards-container')
+const javaScript = []
 axios.get('https://lambda-times-backend.herokuapp.com/articles')
   .then (response => {
-    console.log(response)
+    console.log(response.data.articles.javascript)
+    response.data.articles.javascript.forEach(article => {
+        articleEntry.append(Article(article))
+    })
+    // javaScript.push(response.data.articles.javascript);
 })
+// console.log(javaScript)
