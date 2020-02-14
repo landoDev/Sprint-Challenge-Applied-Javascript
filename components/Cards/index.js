@@ -44,7 +44,9 @@ function Article (dataObj) {
 }
 // console.log(Article())
 const articleEntry = document.querySelector('.cards-container')
-const javaScript = []
+// const javaScript = []
+// All object articles from response will go in the below array?
+const dataObjArray = []
 axios.get('https://lambda-times-backend.herokuapp.com/articles')
   .then (response => {
     console.log(response.data.articles)
