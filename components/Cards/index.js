@@ -47,8 +47,20 @@ const articleEntry = document.querySelector('.cards-container')
 const javaScript = []
 axios.get('https://lambda-times-backend.herokuapp.com/articles')
   .then (response => {
-    console.log(response.data.articles.javascript)
+    console.log(response.data.articles)
     response.data.articles.javascript.forEach(article => {
+        articleEntry.prepend(Article(article))
+    })
+    response.data.articles.bootstrap.forEach(article => {
+        articleEntry.append(Article(article))
+    })
+    response.data.articles.technology.forEach(article => {
+        articleEntry.append(Article(article))
+    })
+    response.data.articles.jquery.forEach(article => {
+        articleEntry.append(Article(article))
+    })
+    response.data.articles.node.forEach(article => {
         articleEntry.append(Article(article))
     })
     // javaScript.push(response.data.articles.javascript);
